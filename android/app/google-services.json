@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "172997743810",
+    "firebase_url": "https://zti-projekt.firebaseio.com",
+    "project_id": "zti-projekt",
+    "storage_bucket": "zti-projekt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172997743810:android:3e7eea73c288723a90175b",
+        "android_client_info": {
+          "package_name": "pl.hcns.ztiprojekt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172997743810-qeetth2fa8enhbljdck2hiks2qp3jutd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pl.hcns.ztiprojekt",
+            "certificate_hash": "672d33cb1cdebbc9837433e26a8fa49baefad320"
+          }
+        },
+        {
+          "client_id": "172997743810-nhp3n37sbfcc2htqq1r1h74p5jph837s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk_dFivXEwRyFtw4MscTXDEuhuW4cASyY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172997743810-nhp3n37sbfcc2htqq1r1h74p5jph837s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
