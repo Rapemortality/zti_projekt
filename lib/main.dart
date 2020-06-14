@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+
+import 'package:ztiprojekt/abstracts/AppUser.dart';
+import 'package:ztiprojekt/mechanics/SignInEngine.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,9 +20,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
   final String title;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -27,69 +28,62 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool _isLoggedIn = false;
 
-  String username = 'Defalut user';
-  String usermail = 'Defalut mail';
-  String userPic =
-      'https://img.itch.zone/aW1nLzI1NjA3MTkucG5n/original/kdaCNO.png';
-
-  GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
-
-  _login() async {
-    await _googleSignIn.signIn();
-  }
-
-  _logout() async {
-    await _googleSignIn.signOut();
-  }
+  AppUser _user = new AppUser.anonymous();
+  SignInEngine signInEngine = new SignInEngine();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("images/bg.jpg"),
+          fit: BoxFit.cover,
+        ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: NetworkImage(userPic),
-            ),
-            Text(username),
-            Text(usermail),
-            FlatButton(
-              onPressed: () {
-                _login();
-              },
-              color: Colors.green,
-              child: Text('Signin with Google'),
-            ),
-            FlatButton(
-              onPressed: () {
-                _logout();
-                setState(() {
-                  username = 'Defalut user';
-                  usermail = 'Defalut mail';
-                  userPic =
-                      'https://img.itch.zone/aW1nLzI1NjA3MTkucG5n/original/kdaCNO.png';
-                });
-              },
-              color: Colors.red,
-              child: Text('Signout from Google'),
-            ),
-            FlatButton(
-              onPressed: () {
-                setState(() {
-                  username = _googleSignIn.currentUser.displayName;
-                  usermail = _googleSignIn.currentUser.email;
-                  userPic = _googleSignIn.currentUser.photoUrl;
-                });
-              },
-              color: Colors.blue,
-              child: Text('GetData'),
-            ),
-          ],
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.green[900],
+          title: Text(widget.title),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              CircleAvatar(
+                radius: 50,
+                backgroundImage: NetworkImage(_user.userPicUrl),
+              ),
+              Text(_user.userName),
+              Text(_user.userMail),
+              FlatButton(
+                onPressed: () {
+                  signInEngine.login();
+                },
+                color: Colors.green,
+                child: Text('Sign in with Google'),
+              ),
+              FlatButton(
+                onPressed: () {
+                  signInEngine.logout();
+                  setState(() {
+                    _user = AppUser.anonymous();
+                  });
+                },
+                color: Colors.red,
+                child: Text('Signout from Google'),
+              ),
+              FlatButton(
+                onPressed: () {
+                  setState(() {
+                    _user = signInEngine.GetUser();
+                  });
+                },
+                color: Colors.blue,
+                child: Text('GetData'),
+              ),
+            ],
+          ),
         ),
       ),
     );

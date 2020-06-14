@@ -6,6 +6,7 @@
   <meta name="description" content="Projekt zaliczeniowy - Zaawansowane Technologie Internetowe / Kaniak Łukasz ININ4_PR2.1">
   <meta name="google-signin-client_id" content="172997743810-nhp3n37sbfcc2htqq1r1h74p5jph837s.apps.googleusercontent.com">
 
+
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -22,6 +23,33 @@
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script> -->
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-firestore.js"></script>
+
+  <script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyARwCLdsVN2LICqc7NBNAbKm_tk8lFAG1c",
+    authDomain: "zti-projekt.firebaseapp.com",
+    databaseURL: "https://zti-projekt.firebaseio.com",
+    projectId: "zti-projekt",
+    storageBucket: "zti-projekt.appspot.com",
+    messagingSenderId: "172997743810",
+    appId: "1:172997743810:web:e2dc9304e230b0db90175b"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
